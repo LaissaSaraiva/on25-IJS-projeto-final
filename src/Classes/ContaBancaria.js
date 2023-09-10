@@ -20,8 +20,13 @@ class ContaBancaria {
   }
 
   debitaValor(valor) {
-    this.#saldoConta -= valor;
-    return this.mostraSaldoAtualizado();
+    const verificaSaldoSuficiente = this.verificaSaldoSuficiente(valor);
+    if (verificaSaldoSuficiente) {
+      this.#saldoConta -= valor;
+      return this.mostraSaldoAtualizado();
+    } else {
+      return `Operação Negada. Saldo indisponível!`      
+    }
   }
 
   adicionaValor(valor) {
@@ -40,6 +45,17 @@ class ContaBancaria {
   mostraSaldoAtualizado() {
     return `Saldo atualizado: R$${this.#saldoConta}.`;
   }
+
+  verificaSaldoSuficiente(valor) {
+    const SALDO_MINIMO_PERMITIDO = 0;
+    const saldoRestante = this.#saldoConta - valor;
+
+    if (valor <= this.#saldoConta && saldoRestante >= SALDO_MINIMO_PERMITIDO) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 const conta1 = new ContaBancaria("Nubank", 0);
@@ -49,12 +65,12 @@ console.log(conta1);
 console.log(conta1.saldoConta);
 
 console.log(conta1.debitaValor(500));
-console.log(conta1.saldoConta);
-console.log(conta1.adicionaValor(5000));
-console.log(conta1.mostraSaldoAtualizado());
 conta1.mostraSaldoAtualizado();
-conta1.verificaValor(0);
-console.log(conta1.verificaValor(0));
+
+// console.log(conta1.adicionaValor(5000));
+// console.log(conta1.mostraSaldoAtualizado());
+// conta1.verificaValor(0);
+// console.log(conta1.verificaSaldoSuficiente(4501));
 
 // console.log(ContaBancaria.contasBancarias)
 
