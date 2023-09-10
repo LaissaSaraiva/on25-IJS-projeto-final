@@ -21,12 +21,12 @@ class ContaBancaria {
 
   debitaValor(valor) {
     this.#saldoConta -= valor;
-    return `Saldo atualizado R$${this.#saldoConta}.`;
+    return this.mostraSaldoAtualizado();
   }
 
   adicionaValor(valor) {
     this.#saldoConta += valor;
-    return `Saldo atualizado R$${this.#saldoConta}.`;
+    return this.mostraSaldoAtualizado();
   }
 
   verificaValor(valor) {
@@ -35,6 +35,10 @@ class ContaBancaria {
     } else {
       return true;
     }
+  }
+
+  mostraSaldoAtualizado() {
+    return `Saldo atualizado: R$${this.#saldoConta}.`;
   }
 }
 
@@ -47,7 +51,8 @@ console.log(conta1.saldoConta);
 console.log(conta1.debitaValor(500));
 console.log(conta1.saldoConta);
 console.log(conta1.adicionaValor(5000));
-console.log(conta1.saldoConta);
+console.log(conta1.mostraSaldoAtualizado());
+conta1.mostraSaldoAtualizado();
 conta1.verificaValor(0);
 console.log(conta1.verificaValor(0));
 
