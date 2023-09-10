@@ -1,6 +1,7 @@
 class Transacoes {
   descricao = "";
   valor = 0;
+  tipo = "";
 
   static transacoes = [];
 
@@ -12,6 +13,18 @@ class Transacoes {
 
   static listarTransacoes() {
     return this.transacoes;
+  }
+
+  static filtrarTransacaoPorTipo(tipo) {
+    const arrayPorTipo = this.transacoes.filter((transacao) => {
+      if (transacao.tipo) {
+        return transacao.tipo === tipo;
+      } else {
+        return false;
+      }
+    });
+
+    return arrayPorTipo;
   }
 }
 
