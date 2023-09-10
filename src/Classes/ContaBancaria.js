@@ -5,7 +5,7 @@ class ContaBancaria {
   static contasBancarias = [];
 
   constructor(nomeBanco, saldoConta) {
-    this.verificaValor(saldoConta);
+    this.verificaValorValido(saldoConta);
     this.nomeBanco = nomeBanco;
     this.#saldoConta = saldoConta;
     this.constructor.contasBancarias.push(this);
@@ -34,7 +34,7 @@ class ContaBancaria {
     return this.mostraSaldoAtualizado();
   }
 
-  verificaValor(valor) {
+  verificaValorValido(valor) {
     if (typeof valor !== "number" || valor < 0) {
       throw new Error("Insira um valor válido");
     } else {
@@ -47,6 +47,7 @@ class ContaBancaria {
   }
 
   verificaSaldoSuficiente(valor) {
+    this.verificaValorValido(valor);
     const SALDO_MINIMO_PERMITIDO = 0;
     const saldoRestante = this.#saldoConta - valor;
 
@@ -57,21 +58,5 @@ class ContaBancaria {
     }
   }
 }
-
-const conta1 = new ContaBancaria("Nubank", 0);
-// const conta2 = new ContaBancaria("Inter", 2500);
-
-console.log(conta1);
-console.log(conta1.saldoConta);
-
-console.log(conta1.debitaValor(500));
-conta1.mostraSaldoAtualizado();
-
-// console.log(conta1.adicionaValor(5000));
-// console.log(conta1.mostraSaldoAtualizado());
-// conta1.verificaValor(0);
-// console.log(conta1.verificaSaldoSuficiente(4501));
-
-// console.log(ContaBancaria.contasBancarias)
 
 module.exports = { ContaBancaria };
