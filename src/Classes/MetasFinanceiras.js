@@ -30,14 +30,13 @@ class MetasFinanceiras {
   retornaSugestaoEconomiaMensal() {
     const media = this.valorTotal / this.prazoEmMeses;
 
-    return `Para alcançar ${this.valorTotal} em ${this.prazoEmMeses} meses, será recomendável economizar R$${media} mensalmente. `
+    return `Para alcançar ${this.valorTotal} em ${this.prazoEmMeses} meses, será recomendável economizar R$${media} mensalmente.`
   }
 
   guardaParaMeta(valor) {
     this.valorAtual += valor;
     this.atualizaValorRestante();    
     this.verificaStatusMeta();
-    
   }
 
   atualizaValorRestante() {
@@ -55,12 +54,5 @@ class MetasFinanceiras {
     }
   }
 }
-
-const carroNovo = new MetasFinanceiras("Carro Novo", 10, 150000);
-console.log(carroNovo);
-console.log(carroNovo.retornaSugestaoEconomiaMensal());
-carroNovo.guardaParaMeta(150000);
-console.log(MetasFinanceiras.metas)
-
 
 module.exports = { MetasFinanceiras };
