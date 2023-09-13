@@ -13,6 +13,7 @@ class MeuAplicativo {
     receitas: [],
     metas: [],
   };
+  planejamentoMensal = { essenciais : 0,  metas : 0 }
   #saldoNoApp;
 
   constructor(usuario) {
@@ -21,6 +22,7 @@ class MeuAplicativo {
     }
     this.usuario = usuario;
     this.#saldoNoApp = 0;
+    this.adicionaPlanejamentoMensal();
   }
 
   get saldoNoApp() {
@@ -81,11 +83,31 @@ class MeuAplicativo {
     this.historicoTransacoes.metas.push(novaMeta);
     return sugestaoEconomia;
   }
+
+  adicionaPlanejamentoMensal() {
+    const salario = this.usuario.salario;
+    const essenciais = 0.7;
+    const metas = 0.3;
+
+    this.planejamentoMensal.essenciais = salario * essenciais;
+    this.planejamentoMensal.metas = salario * metas;
+
+    return this.mostraPlanejamentoMensal();
+  }
+
+  mostraPlanejamentoMensal() {
+    return `Olá, ${this.usuario.nome}, o seu Planejamento Financeiro ideal baseado no seu salário de R$ ${this.usuario.salario} é: gastar R$${this.planejamentoMensal.essenciais} com despesas essencias, e separar R$${this.planejamentoMensal.metas} para as metas que você deseja alcançar.`
+  }
 }
 
 // const usuario3 = new Usuario("Jay", "Arquiteto", 20000, "jay@email.com", "Manny&Gloria")
 // const meuApp1 = new MeuAplicativo(usuario3);
 
+// console.log(meuApp1)
+// meuApp1.adicionaPlanejamentoMensal();
+// console.log(meuApp1.adicionaPlanejamentoMensal())
+// console.log(meuApp1.planejamentoMensal);
+// console.log(meuApp1.mostraPlanejamentoMensal())
 // console.log(meuApp1.verificaValorValido(10));
 
 // meuApp1.adicionaContaBancaria("Modern Bank", 3000)

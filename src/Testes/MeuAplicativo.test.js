@@ -5,6 +5,7 @@ const { Receitas } = require("../Classes/Receitas");
 const { ContaBancaria } = require("../Classes/ContaBancaria");
 const { MeuAplicativo } = require("../Classes/MeuAplicativo");
 const { MetasFinanceiras } = require("../Classes/MetasFinanceiras")
+
 describe("Testa a Classe MeuAplicativo", () => {
   let usuario1, meuApp1;
 
@@ -19,10 +20,12 @@ describe("Testa a Classe MeuAplicativo", () => {
     meuApp1 = new MeuAplicativo(usuario1);
     meuApp1.adicionaContaBancaria("Modern Bank", 20000);
   });
-  it("deve retornar uma nova conta no Aplicativo se usuário for instância de Usuário", () => {
+
+  it("deve retornar uma nova conta no Aplicativo já com os dados de usuários e indicação de um Planejamento Financeiro Mensal, se usuário for instância de Usuário", () => {
     expect(meuApp1).toEqual({
       contasBancarias: [{ nomeBanco: "Modern Bank" }],
       historicoTransacoes: { despesas: [], receitas: [], metas: [], },
+      planejamentoMensal: { essenciais: 14000,  metas: 6000 },
       usuario: { nome: "Jay", profissao: "Arquiteto" },
     });
   });
@@ -43,5 +46,5 @@ describe("Testa a Classe MeuAplicativo", () => {
     const meta1 = meuApp1.adicionaMetasFinanceiras("Viagem com a Família", 6 , 15000);
     expect(meta1).toBe("Para alcançar 15000 em 6 meses, será recomendável economizar R$2500 mensalmente.");
   });
-
+  
 });
