@@ -30,7 +30,7 @@ class MeuAplicativo {
   }
 
   set saldoNoApp(novoSaldo) {
-    return (this.#saldoNoApp = novoSaldo);
+    this.#saldoNoApp = novoSaldo;
   }
 
   verificaValorValido(valor) {
