@@ -10,6 +10,7 @@ class MeuAplicativo {
   contasBancarias = [];
   historicoTransacoes = {
     despesas: [],
+    totalDespesas: 0,
     receitas: [],
     metas: [],
   };
@@ -65,6 +66,7 @@ class MeuAplicativo {
     const novaDespesa = new Despesas(descricao, valor);
     this.historicoTransacoes.despesas.push(novaDespesa);
     this.retiraSaldoDoApp(valor);
+    this.somaDespesas();
 
     return "Despesa adicionada com Sucesso";
   }
@@ -98,10 +100,30 @@ class MeuAplicativo {
   mostraPlanejamentoMensal() {
     return `Olá, ${this.usuario.nome}, o seu Planejamento Financeiro ideal baseado no seu salário de R$ ${this.usuario.salario} é: gastar R$${this.planejamentoMensal.essenciais} com despesas essencias, e separar R$${this.planejamentoMensal.metas} para as metas que você deseja alcançar.`
   }
+
+  somaDespesas() {
+    const arrayValoresDespesas = this.historicoTransacoes.despesas.map(despesa => despesa.valor);
+
+    const somaValores = arrayValoresDespesas.reduce((valor, soma) => valor + soma, 0);
+
+    return this.historicoTransacoes.totalDespesas = somaValores;
+  }
+
+  mostraAlertaGastos() {
+    const limiteGastos = this.planejamentoMensal.essenciais;
+    const despesasTotais = this.historicoTransacoes.totalDespesas;
+    const diferenca = despesasTotais - limiteGastos;
+
+    if(despesasTotais > limiteGastos) {
+      return `Alerta, você ultrapassou R$${diferenca} no seu orçamento!`;
+    }   
+  }
 }
 
 // const usuario3 = new Usuario("Jay", "Arquiteto", 20000, "jay@email.com", "Manny&Gloria")
 // const meuApp1 = new MeuAplicativo(usuario3);
+
+
 
 // console.log(meuApp1)
 // meuApp1.adicionaPlanejamentoMensal();
@@ -115,7 +137,14 @@ class MeuAplicativo {
 
 // console.log(`${meuApp1.mostraSaldoAtualizado()} - meu saldo`);
 // console.log("--------------------");
-// console.log(meuApp1.adicionaDespesas("Vestido Lily", 150));
+// console.log(meuApp1.adicionaDespesas("Vestido Lily", 13000));
+// console.log(meuApp1.adicionaDespesas("Vestido Gloria", 1000));
+
+// console.log(meuApp1.historicoTransacoes.despesas);
+
+
+// // console.log(meuApp1.somaDespesas());
+// console.log(meuApp1.historicoTransacoes.totalDespesas)
 // console.log(meuApp1.historicoTransacoes.despesas);
 // console.log(meuApp1.adicionaReceitas("Salário", 10000));
 

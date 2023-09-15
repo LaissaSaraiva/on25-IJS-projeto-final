@@ -24,7 +24,7 @@ describe("Testa a Classe MeuAplicativo", () => {
   it("deve retornar uma nova conta no Aplicativo já com os dados de usuários e indicação de um Planejamento Financeiro Mensal, se usuário for instância de Usuário", () => {
     expect(meuApp1).toEqual({
       contasBancarias: [{ nomeBanco: "Modern Bank" }],
-      historicoTransacoes: { despesas: [], receitas: [], metas: [], },
+      historicoTransacoes: { despesas: [], receitas: [], metas: [], totalDespesas: 0,},
       planejamentoMensal: { essenciais: 14000,  metas: 6000 },
       usuario: { nome: "Jay", profissao: "Arquiteto" },
     });
@@ -42,9 +42,19 @@ describe("Testa a Classe MeuAplicativo", () => {
     expect(saldoAtualizado).toBe("Jay, o seu saldo atualizado é: R$35000.");
   });
 
-  it("deve adicionar uma meta Financeira e retornar uma sugestão de enconomia Mensal", () => {
+  it("deve adicionar uma meta Financeira e retornar uma sugestão de economia Mensal", () => {
     const meta1 = meuApp1.adicionaMetasFinanceiras("Viagem com a Família", 6 , 15000);
     expect(meta1).toBe("Para alcançar 15000 em 6 meses, será recomendável economizar R$2500 mensalmente.");
   });
+
+  it("deve adicionar uma despesa no valor de 10000, e retornar o total de despesas de R$15000", () => {
+   const despesaFerias =  meuApp1.adicionaDespesas("Férias em Família", 10000);
+
+    expect(meuApp1.historicoTransacoes.totalDespesas).toEqual(15000);
+  })
   
+  it("deve retornar o alerta de gastos, caso tenha ultrapassado o valor recomendado de despesas", () => {
+
+    expect(meuApp1.mostraAlertaGastos()).toEqual("Alerta, você ultrapassou R$1000 no seu orçamento!")
+  })
 });
