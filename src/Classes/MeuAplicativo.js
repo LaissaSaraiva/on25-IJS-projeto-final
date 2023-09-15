@@ -12,6 +12,7 @@ class MeuAplicativo {
     despesas: [],
     totalDespesas: 0,
     receitas: [],
+    totalReceitas: 0,
     metas: [],
   };
   planejamentoMensal = { essenciais : 0,  metas : 0 }
@@ -76,6 +77,7 @@ class MeuAplicativo {
     this.historicoTransacoes.receitas.push(novaReceita);
 
     this.adicionaSaldoAoApp(valor);
+    this.somaReceitas();
     return "Receita adicionada com Sucesso";
   }
 
@@ -109,6 +111,15 @@ class MeuAplicativo {
     return this.historicoTransacoes.totalDespesas = somaValores;
   }
 
+  somaReceitas() {
+    const arrayValoresReceitas = this.historicoTransacoes.receitas.map(receita => receita.valor);
+
+    const somaValores = arrayValoresReceitas.reduce((valor, soma) => valor + soma, 0);
+
+    return this.historicoTransacoes.totalReceitas = somaValores;
+  }
+
+
   mostraAlertaGastos() {
     const limiteGastos = this.planejamentoMensal.essenciais;
     const despesasTotais = this.historicoTransacoes.totalDespesas;
@@ -141,7 +152,12 @@ class MeuAplicativo {
 // console.log(meuApp1.adicionaDespesas("Vestido Gloria", 1000));
 
 // console.log(meuApp1.historicoTransacoes.despesas);
+// console.log(meuApp1.historicoTransacoes.totalDespesas);
 
+// meuApp1.adicionaReceitas("Bonus", 5000);
+// meuApp1.adicionaReceitas("Salario", 20000);
+// console.log(meuApp1.historicoTransacoes.receitas);
+// console.log(meuApp1.historicoTransacoes.totalReceitas);
 
 // // console.log(meuApp1.somaDespesas());
 // console.log(meuApp1.historicoTransacoes.totalDespesas)
