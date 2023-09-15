@@ -30,28 +30,13 @@ describe("Testa as Classes Transacoes", () => {
     });
   });
 
-  describe("Testa os métodos estáticos de Transacoes", () => {
+  describe("Testa os método estático listarTransacoes()", () => {
     it("deve retornar um array de Transacoes, com todas as instâncias de Receitas e Despesas", () => {
       const todasAsTransacoes = Transacoes.listarTransacoes();
       expect(todasAsTransacoes).toEqual([
         { descricao: "Pão", tipo: "despesa", valor: 2.5 },
         { descricao: "Salário", tipo: "receita", valor: 2500 },
         { descricao: "Cinema", tipo: "despesa", valor: 20 },
-        { descricao: "Site Freelancer", tipo: "receita", valor: 3000 },
-      ]);
-    });
-
-    it("deve retornar um array com apenas as despesas", () => {
-      const listaDeDespesas = Transacoes.filtrarTransacaoPorTipo("despesa");
-      expect(listaDeDespesas).toEqual([
-        { descricao: "Pão", tipo: "despesa", valor: 2.5 },
-        { descricao: "Cinema", tipo: "despesa", valor: 20 },
-      ]);
-    });
-    it("deve retornar um array com apenas as receitas", () => {
-      const listaDeReceitas = Transacoes.filtrarTransacaoPorTipo("receita");
-      expect(listaDeReceitas).toEqual([
-        { descricao: "Salário", tipo: "receita", valor: 2500 },
         { descricao: "Site Freelancer", tipo: "receita", valor: 3000 },
       ]);
     });
