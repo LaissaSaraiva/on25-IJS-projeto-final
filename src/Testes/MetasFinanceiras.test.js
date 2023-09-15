@@ -7,6 +7,10 @@ let meta1;
     meta1 = new MetasFinanceiras("Notebook", 10, 2500);
   })
 
+  it("deve retornar uma mensagem de erro ao digitar um número inválido", () => {
+    expect(() => meta1.verificaValorValido(-1)).toThrow(new Error("Insira um valor válido"));
+  })
+
   it("deve retornar Sugestão de economial mensal para alçancar a meta no prazo escolhido", () => {
     expect(meta1.retornaSugestaoEconomiaMensal()).toBe("Para alcançar 2500 em 10 meses, será recomendável economizar R$250 mensalmente.");
   })
