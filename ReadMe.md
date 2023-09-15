@@ -29,6 +29,7 @@ Foram utilizados os conceitos de:
 
 - JavaScript
 - Jest
+- Git
 
 #### [O que é a {reprograma}?](https://reprograma.com.br/)
 
