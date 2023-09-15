@@ -18,7 +18,7 @@ class Usuario {
   }
 
   set salario(novoSalario) {
-    this.#salario += novoSalario;
+    this.#salario = novoSalario;
   }
 
   get email() {

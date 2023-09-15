@@ -28,12 +28,30 @@ describe("Testa a Classe Usuario", () => {
     });
   });
 
-  it("Verifica se o valor do salário é acessado com o método get salario()", () => {
-    expect(usuario1.salario).toBe(5000);
+  it("Verifica setters e getters", () => {
+    const usuario2 = new Usuario(
+      "Cameron",
+      "Professor de Música",
+      3000,
+      "cameron@email.com",
+      "lily2005"
+    );
+
+    usuario2.salario = 4000;
+    usuario2.email = "cameronMusica@email.com";
+    usuario2.senha = "ILoveLily&Cam";
+    expect(usuario2.salario).toBe(4000);
+    expect(usuario2.email).toBe("cameronMusica@email.com");
+    expect(usuario2.senha).toBe("ILoveLily&Cam")
   });
 
-  it("Verifica se a senha é alterada com o método set senha()", () => {
-    usuario1.senha = "ILoveLily&Cam";
-    expect(usuario1.senha).toBe("ILoveLily&Cam");
+  it("deve retornar mensagem para senha correta", () => {
+    const senhaCorreta = usuario1.validaSenha("lily&Cam");
+    expect(senhaCorreta).toBe("Senha Correta, Mitchel.");   
+  });
+
+  it("deve retornar mensagem para senha incorreta'", () => {
+    const senhaIncorreta = usuario1.validaSenha("AmoMinhaFamilia")
+    expect(senhaIncorreta).toBe("Mitchel, sua senha está incorreta. Tente outra vez.");
   });
 });
