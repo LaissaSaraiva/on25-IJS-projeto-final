@@ -19,12 +19,16 @@ class MeuAplicativo {
   #saldoNoApp;
 
   constructor(usuario) {
-    if (!(usuario instanceof Usuario)) {
-      throw new Error("Insira um usuário válido");
-    }
+    this.validaUsuario(usuario);
     this.usuario = usuario;
     this.#saldoNoApp = 0;
     this.adicionaPlanejamentoMensal();
+  }
+
+  validaUsuario(usuario){
+    if (!(usuario instanceof Usuario)) {
+      return `Insira um usuário válido`
+    }
   }
 
   get saldoNoApp() {
@@ -127,50 +131,10 @@ class MeuAplicativo {
 
     if(despesasTotais > limiteGastos) {
       return `Alerta, você ultrapassou R$${diferenca} no seu orçamento!`;
-    }   
+    } else {
+      return "Seus gastos estão dentro do orçamento!"
+    }
   }
 }
-
-// const usuario3 = new Usuario("Jay", "Arquiteto", 20000, "jay@email.com", "Manny&Gloria")
-// const meuApp1 = new MeuAplicativo(usuario3);
-
-
-
-// console.log(meuApp1)
-// meuApp1.adicionaPlanejamentoMensal();
-// console.log(meuApp1.adicionaPlanejamentoMensal())
-// console.log(meuApp1.planejamentoMensal);
-// console.log(meuApp1.mostraPlanejamentoMensal())
-// console.log(meuApp1.verificaValorValido(10));
-
-// meuApp1.adicionaContaBancaria("Modern Bank", 3000)
-// console.log(meuApp1.contasBancarias);
-
-// console.log(`${meuApp1.mostraSaldoAtualizado()} - meu saldo`);
-// console.log("--------------------");
-// console.log(meuApp1.adicionaDespesas("Vestido Lily", 13000));
-// console.log(meuApp1.adicionaDespesas("Vestido Gloria", 1000));
-
-// console.log(meuApp1.historicoTransacoes.despesas);
-// console.log(meuApp1.historicoTransacoes.totalDespesas);
-
-// meuApp1.adicionaReceitas("Bonus", 5000);
-// meuApp1.adicionaReceitas("Salario", 20000);
-// console.log(meuApp1.historicoTransacoes.receitas);
-// console.log(meuApp1.historicoTransacoes.totalReceitas);
-
-// // console.log(meuApp1.somaDespesas());
-// console.log(meuApp1.historicoTransacoes.totalDespesas)
-// console.log(meuApp1.historicoTransacoes.despesas);
-// console.log(meuApp1.adicionaReceitas("Salário", 10000));
-
-// console.log(meuApp1.historicoTransacoes.receitas);
-// console.log("--------------------");
-// console.log(meuApp1.historicoTransacoes);
-// console.log(`${meuApp1.saldoNoApp} - meu saldo`);
-
-// console.log(meuApp1.adicionaMetasFinanceiras("Viagem com a Família", 6 , 15000));
-// console.log(meuApp1.historicoTransacoes.metas);
-
 
 module.exports = { MeuAplicativo };

@@ -18,7 +18,7 @@ describe("Testa a Classe MeuAplicativo", () => {
       "Manny&Gloria"
     );
     meuApp1 = new MeuAplicativo(usuario1);
-    meuApp1.adicionaContaBancaria("Modern Bank", 20000);
+    meuApp1.adicionaContaBancaria("Modern Bank", 19000);
   });
 
   it("deve retornar uma nova conta no Aplicativo já com os dados de usuários e indicação de um Planejamento Financeiro Mensal, se usuário for instância de Usuário", () => {
@@ -35,6 +35,16 @@ describe("Testa a Classe MeuAplicativo", () => {
       usuario: { nome: "Jay", profissao: "Arquiteto" },
     });
   });
+
+  it("deve validar se usuario não é instância de Usuario", () => {
+    const usuarioInvalido = meuApp1.validaUsuario("usuario1");
+    expect(usuarioInvalido).toBe("Insira um usuário válido")
+  })
+
+  it("deve alterar e retornar o novo saldo no App com getter e setter", () => {
+    meuApp1.saldoNoApp = 20000;
+    expect(meuApp1.saldoNoApp).toBe(20000)
+  })
 
   it("deve adicionar despesa de R$5000 e retornar o saldo atual de R$ 15000", () => {
     meuApp1.adicionaDespesas("Presente Glória", 5000);
@@ -60,12 +70,20 @@ describe("Testa a Classe MeuAplicativo", () => {
   });
 
   it("deve adicionar uma despesa no valor de 10000, e retornar o total de despesas de R$15000", () => {
-    const despesaFerias = meuApp1.adicionaDespesas("Férias em Família", 10000);
+    const despesaFerias = meuApp1.adicionaDespesas("Férias em Família", 9000);
 
-    expect(meuApp1.historicoTransacoes.totalDespesas).toEqual(15000);
+    expect(meuApp1.historicoTransacoes.totalDespesas).toEqual(14000);
+  });
+
+  it("deve retornar mensagem que os gastos estão dentro do Orçamento", () => {
+    expect(meuApp1.mostraAlertaGastos()).toEqual(
+      "Seus gastos estão dentro do orçamento!"
+    );
   });
 
   it("deve retornar o alerta de gastos, caso tenha ultrapassado o valor recomendado de despesas", () => {
+    const seguroViagem = meuApp1.adicionaDespesas("Seguro Viagem", 1000);
+
     expect(meuApp1.mostraAlertaGastos()).toEqual(
       "Alerta, você ultrapassou R$1000 no seu orçamento!"
     );
@@ -82,4 +100,8 @@ describe("Testa a Classe MeuAplicativo", () => {
     ]);
     expect(meuApp1.historicoTransacoes.totalReceitas).toBe(75000);
   });
+
+  it("deve retornar uma mensagem de erro ao digitar um número inválido", () => {
+    expect(() => meuApp1.verificaValorValido(-1)).toThrow(new Error("Insira um valor válido"));
+  })
 });
