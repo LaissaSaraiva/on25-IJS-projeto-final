@@ -16,7 +16,7 @@ Projeto desenvolvido como trabalho de conclusão do curso Imersão JavaScript.
 
 Este projeto tem como objetivo ajudar as pessoas a controlar suas despesas e receitas e a alcançar seus objetivos financeiros e metas, através de um Planejamento Financeiro Personalizado contribuindo assim para a promoção do crescimento econômico sustentável (ODS 8), e para a redução da pobreza (ODS 1).
 
-## Aprendizados:
+### Aprendizados:
 
 Foram utilizados os conceitos de:
 
@@ -25,11 +25,17 @@ Foram utilizados os conceitos de:
 - Princípios de SOLID;
 - Clean Code.
 
-### Tecnologias Utilizadas:
+### Tecnologias:
 
 - JavaScript
 - Jest
 - Git
+
+### Cobertura de Testes:
+
+<div align="center">
+<img src="./assets/coverage-test-jest.png" alt="Imagem da cobertura de Testes">
+</div>
 
 #### [O que é a {reprograma}?](https://reprograma.com.br/)
 
